@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Daily With Sanskari — Easy Editor</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#08090b;color:#fff;font-family:Arial,sans-serif}
+.wrap{max-width:1100px;margin:auto;padding:22px}.top{position:sticky;top:0;background:#0d0f12ee;backdrop-filter:blur(12px);z-index:5;border-bottom:1px solid #292d34}
+.topin{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-weight:900;font-size:20px}.brand span{color:#caff3d}
+button,.btn{border:0;border-radius:10px;padding:12px 16px;font-weight:800;cursor:pointer}.save{background:#caff3d;color:#08090b}
+.editor{margin:28px auto;display:grid;grid-template-columns:340px 1fr;gap:22px}
+.panel,.preview{background:#111318;border:1px solid #292d34;border-radius:20px;padding:22px}.panel h2{margin-top:0}
+label{display:block;font-size:13px;color:#aab0ba;margin:15px 0 7px}input,textarea{width:100%;background:#08090b;border:1px solid #30353d;color:#fff;border-radius:9px;padding:11px;font:inherit}textarea{min-height:75px;resize:vertical}
+.hint{font-size:12px;color:#777e89;margin-top:8px}.photo{width:120px;height:120px;border-radius:50%;object-fit:cover;display:block;background:#252a31;margin-bottom:10px}
+.site{background:#08090b;border-radius:15px;overflow:hidden;min-height:650px}.nav{padding:18px 22px;border-bottom:1px solid #252a31;display:flex;justify-content:space-between}.links{display:flex;gap:15px;color:#9fa5ae;font-size:12px}
+.hero{padding:65px 28px}.pill{color:#caff3d;border:1px solid #343a42;padding:6px 10px;border-radius:99px;font-size:11px}.hero h1{font-size:clamp(42px,7vw,72px);line-height:.95;margin:18px 0 12px}.lime{color:#caff3d}.hero p{color:#9da3ad;max-width:600px}.actions{display:flex;gap:10px;margin-top:22px}.primary{background:#caff3d;color:#08090b}.outline{border:1px solid #343a42;color:#fff;background:transparent}
+.section{padding:28px}.section h2{font-size:27px;margin-bottom:5px}.muted{color:#9299a4}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{border:1px solid #292d34;border-radius:12px;overflow:hidden;background:#111318}.thumb{height:105px;background:linear-gradient(135deg,#303640,#171a20);display:grid;place-items:center;color:#caff3d;font-size:11px;font-weight:800}.card div:last-child{padding:12px}.card h3{font-size:14px;margin:0 0 4px}.card p{font-size:11px;color:#858c97;margin:0}.about{display:grid;grid-template-columns:160px 1fr;gap:22px;align-items:center}.about img{width:160px;height:160px;object-fit:cover;border-radius:18px;background:#1b1e23}.socials{display:flex;gap:8px;flex-wrap:wrap}.socials a{border:1px solid #343a42;border-radius:8px;padding:8px 11px;font-size:11px}
+@media(max-width:850px){.editor{grid-template-columns:1fr}.links{display:none}.cards{grid-template-columns:1fr}.about{grid-template-columns:1fr}.about img{width:120px;height:120px}}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap topin"><div class="brand">Daily With <span>Sanskari</span></div><button class="save" onclick="saveSite()">Save / Download</button></div></div>
+
+<div class="wrap editor">
+<aside class="panel">
+<h2>✏️ Website Edit Karo</h2>
+<p class="hint">Neeche details bharo. Right side preview automatically change hoga.</p>
+
+<label>Your name / brand</label><input id="name" value="Sanskari">
+<label>Tagline</label><input id="tagline" value="Daily life. Real vibes.">
+<label>About you</label><textarea id="aboutText">I'm a creator sharing my everyday life, travel, friends, fun and real moments.</textarea>
+<label>Profile photo</label><input id="photo" type="file" accept="image/*">
+<label>YouTube link</label><input id="youtube" placeholder="https://youtube.com/...">
+<label>Instagram link</label><input id="instagram" placeholder="https://instagram.com/...">
+<label>Facebook link</label><input id="facebook" placeholder="https://facebook.com/...">
+<label>Contact email</label><input id="email" placeholder="your@email.com">
+
+<h3>🎥 Vlog 1</h3><label>Title</label><input id="v1" value="A Day With Me"><label>YouTube/video link</label><input id="l1" placeholder="https://youtube.com/watch?v=...">
+<h3>🎥 Vlog 2</h3><label>Title</label><input id="v2" value="Exploring A New Place"><label>Video link</label><input id="l2">
+<h3>🎥 Vlog 3</h3><label>Title</label><input id="v3" value="Friends Wala Full Day"><label>Video link</label><input id="l3">
+<p class="hint">Save / Download dabane par updated website ki file save hogi.</p>
+</aside>
+
+<main class="preview">
+<div class="site">
+<div class="nav"><strong>Daily With <span style="color:#caff3d">Sanskari</span></strong><div class="links"><span>Vlogs</span><span>About</span><span>Gallery</span><span>Contact</span></div></div>
+<div class="hero"><span class="pill">WELCOME TO MY WORLD ✦</span><h1>Daily life.<br><span class="lime">Real vibes.</span></h1><p id="heroAbout">Welcome to Daily With Sanskari.</p><div class="actions"><a id="ytBtn" class="btn primary" href="#" target="_blank">Watch Vlogs</a><a id="mailBtn" class="btn outline" href="#">Contact Me</a></div></div>
+<div class="section"><h2>Latest Vlogs</h2><p class="muted">The newest videos from <span id="brandName">Sanskari</span>.</p><div class="cards">
+<a id="c1" class="card" href="#" target="_blank"><div class="thumb">VLOG 01</div><div><h3 id="t1">A Day With Me</h3><p>Daily Life</p></div></a>
+<a id="c2" class="card" href="#" target="_blank"><div class="thumb">VLOG 02</div><div><h3 id="t2">Exploring A New Place</h3><p>Travel</p></div></a>
+<a id="c3" class="card" href="#" target="_blank"><div class="thumb">VLOG 03</div><div><h3 id="t3">Friends Wala Full Day</h3><p>Fun</p></div></a>
+</div></div>
+<div class="section"><div class="about"><img id="profile" alt="Profile photo"><div><h2>Hey, I'm <span id="aboutName">Sanskari</span> 👋</h2><p id="aboutPreview">I'm a creator.</p><div class="socials"><a id="igBtn" href="#" target="_blank">Instagram</a><a id="fbBtn" href="#" target="_blank">Facebook</a><a id="ytBtn2" href="#" target="_blank">YouTube</a></div></div></div></div>
+<div class="section"><h2>Gallery</h2><p class="muted">Your photos can be added here later.</p></div>
+</div>
+</main>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+function safeUrl(v){return v&&/^https?:\/\//i.test(v)?v:'#'}
+function update(){
+ $('brandName').textContent=$('name').value||'Sanskari';$('aboutName').textContent=$('name').value||'Sanskari';
+ $('heroAbout').textContent=$('aboutText').value||'Welcome to Daily With Sanskari.';$('aboutPreview').textContent=$('aboutText').value||'';
+ $('t1').textContent=$('v1').value||'Vlog 01';$('t2').textContent=$('v2').value||'Vlog 02';$('t3').textContent=$('v3').value||'Vlog 03';
+ $('ytBtn').href=safeUrl($('youtube').value);$('ytBtn2').href=safeUrl($('youtube').value);$('igBtn').href=safeUrl($('instagram').value);$('fbBtn').href=safeUrl($('facebook').value);
+ $('mailBtn').href=$('email').value?'mailto:'+$('email').value:'#';$('c1').href=safeUrl($('l1').value);$('c2').href=safeUrl($('l2').value);$('c3').href=safeUrl($('l3').value);
+}
+document.querySelectorAll('input,textarea').forEach(x=>x.addEventListener('input',update));
+$('photo').addEventListener('change',e=>{const f=e.target.files[0];if(f){$('profile').src=URL.createObjectURL(f)}});
+update();
+function saveSite(){alert('Editor details isi file ke preview mein hain. Browser menu se “Save/Download” use karke file save kar sakte ho.')}
+</script>
+</body></html>
